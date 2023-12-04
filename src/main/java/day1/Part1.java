@@ -1,23 +1,15 @@
 package day1;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import util.Util;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Part1 {
     public static void main(String[] args) {
-        List<String> input;
+        List<String> input = Util.getLines("/day1/day1.txt");
         int sum = 0;
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(Part1.class.getResourceAsStream("/day1/day1.txt")))) {
-            input = reader.lines().collect(Collectors.toList());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         for (String line : input) {
             String number = String.copyValueOf(new char[] {line.charAt(findDigitIndex(line, true)), line.charAt(findDigitIndex(line, false))});

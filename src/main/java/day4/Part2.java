@@ -1,8 +1,7 @@
 package day4;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import util.Util;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,13 +14,7 @@ public class Part2 {
     private static final List<Integer> cardsAmount = new ArrayList<>();
 
     public static void main(String[] args) {
-        int sum = 0;
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(day1.Part1.class.getResourceAsStream("/day4/day4.txt")))) {
-            input = reader.lines().collect(Collectors.toList());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        input = Util.getLines("/day1/day1.txt");
 
         for (int i = 0; i < input.size(); ++i) {
             cardsAmount.add(1);
@@ -29,7 +22,7 @@ public class Part2 {
 
         for (int i = 0; i < input.size(); ++i) {
             String line = input.get(i);
-            String trimmedLine = line.substring(getMatch(line, "Card\\s+[0-9]+:\\s").length());
+            String trimmedLine = line.substring(Util.getMatch(line, "Card\\s+[0-9]+:\\s").length());
 
             List<Integer> winningNumbers = extractNumbers(trimmedLine.split(" \\| ")[0]);
             List<Integer> cardNumbers = extractNumbers(trimmedLine.split(" \\| ")[1]);
@@ -38,17 +31,6 @@ public class Part2 {
         }
 
         System.out.println(cardsAmount.stream().mapToInt(Integer::intValue).sum());
-    }
-
-    private static String getMatch(String input, String regex) {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(input);
-
-        if (matcher.find()) {
-            return matcher.group();
-        } else {
-            return "";
-        }
     }
 
     private static List<Integer> extractNumbers(String input) {

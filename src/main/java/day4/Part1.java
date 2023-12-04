@@ -1,8 +1,7 @@
 package day4;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import util.Util;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -11,17 +10,11 @@ import java.util.stream.Collectors;
 
 public class Part1 {
     public static void main(String[] args) {
-        List<String> input;
+        List<String> input = Util.getLines("/day1/day1.txt");
         int sum = 0;
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(day1.Part1.class.getResourceAsStream("/day4/day4.txt")))) {
-            input = reader.lines().collect(Collectors.toList());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         for (String line : input) {
-            String trimmedLine = line.substring(getMatch(line, "Card\\s+[0-9]+:\\s").length());
+            String trimmedLine = line.substring(Util.getMatch(line, "Card\\s+[0-9]+:\\s").length());
 
             List<Integer> winningNumbers = extractNumbers(trimmedLine.split(" \\| ")[0]);
             List<Integer> cardNumbers = extractNumbers(trimmedLine.split(" \\| ")[1]);
@@ -30,17 +23,6 @@ public class Part1 {
             sum += pointsForTheCard;
 
             System.out.printf("Winning numbers: %s, card numbers: %s, points: %s, intermediary sum: %s%n", winningNumbers, cardNumbers, pointsForTheCard, sum);
-        }
-    }
-
-    private static String getMatch(String input, String regex) {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(input);
-
-        if (matcher.find()) {
-            return matcher.group();
-        } else {
-            return "";
         }
     }
 

@@ -1,5 +1,7 @@
 package day1;
 
+import util.Util;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,7 +18,7 @@ public class Part2 {
 
 
     public static void main(String[] args) {
-        List<String> input;
+        List<String> input = Util.getLines("/day1/day1.txt");
         int sum = 0;
         MAP_NUMBER.put("one", 1);
         MAP_NUMBER.put("two", 2);
@@ -27,12 +29,6 @@ public class Part2 {
         MAP_NUMBER.put("seven", 7);
         MAP_NUMBER.put("eight", 8);
         MAP_NUMBER.put("nine", 9);
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(Part2.class.getResourceAsStream("/day1/day1.txt")))) {
-            input = reader.lines().collect(Collectors.toList());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         for (String line : input) {
             int digitOne = findDigit(line, true);

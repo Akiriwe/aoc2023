@@ -34,6 +34,18 @@ class Game {
         return true;
     }
 
+    public Subset getTheMinimalSubsetToRunTheGame() {
+        Subset minimalSubset = new Subset(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
+
+        subsets.forEach(subset -> {
+            if (subset.getRed() > minimalSubset.getRed()) minimalSubset.setRed(subset.getRed());
+            if (subset.getGreen() > minimalSubset.getGreen()) minimalSubset.setGreen(subset.getGreen());
+            if (subset.getBlue() > minimalSubset.getBlue()) minimalSubset.setBlue(subset.getBlue());
+        });
+
+        return minimalSubset;
+    }
+
     @Override
     public String toString() {
         return "Game{" +

@@ -13,12 +13,6 @@ public class Part2 {
     private static final String GREEN = "green";
     private static final String BLUE = "blue";
 
-    private static final int RED_AMOUNT = 12;
-    private static final int GREEN_AMOUNT = 13;
-    private static final int BLUE_AMOUNT = 14;
-
-    private static final Subset SUBSET_TO_COMPLY_WITH = new Subset(RED_AMOUNT, BLUE_AMOUNT, GREEN_AMOUNT);
-
     private static final List<Game> GAMES = new ArrayList<>();
 
     public static void main(String[] args) {
